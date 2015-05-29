@@ -58,7 +58,7 @@
       var url = basePath + src;
       var delimiter = url.indexOf('?') < 0 ? '?' : '&';
       var docSearch = location.search.slice(1);
-      this.timeout(10000);
+      this.timeout(15000);
       iframe.src = url + delimiter + Math.random() + '&' + docSearch;
     });
   };
