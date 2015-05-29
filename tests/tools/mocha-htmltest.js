@@ -58,6 +58,7 @@
       var url = basePath + src;
       var delimiter = url.indexOf('?') < 0 ? '?' : '&';
       var docSearch = location.search.slice(1);
+      this.timeout(10000);
       iframe.src = url + delimiter + Math.random() + '&' + docSearch;
     });
   };
@@ -72,12 +73,20 @@
 
   function calcBase() {
     var b = base;
-    var script = document._currentScript ||
-      document.scripts[document.scripts.length - 1];
+    //var script = document._currentScript ||
+    //  document.scripts[document.scripts.length - 1];
+    var scripts = document.querySelectorAll('script[src*="tests"]');
+    var script = scripts[scripts.length - 1];
     if (script) {
+      var baseKey = 'tests';
       var parts = script.src.split('/');
-      parts.pop();
-      b = parts.join('/') + '/';
+      var baseKeyIndex;
+      for (var i = parts.length - 1; !baseKeyIndex && i >= 0; i--) {
+        if (parts[i] === baseKey) {
+          baseKeyIndex = i + 2;
+          b = parts.splice(0, baseKeyIndex + 1).join('/') + '/';
+        }
+      }
     }
     return b;
   }

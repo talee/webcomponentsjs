@@ -143,6 +143,6 @@ var modules = [
   'wrappers.js',
 ];
 
-modules.forEach(function(inSrc) {
-  document.write('<script src="' + base + 'js/' + inSrc + '"></script>');
-});
+//modules.forEach(function(inSrc) {
+//  document.write('<script src="' + base + 'js/' + inSrc + '"></script>');
+//});

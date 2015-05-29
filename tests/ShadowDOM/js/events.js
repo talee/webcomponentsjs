@@ -1413,6 +1413,7 @@ test('retarget order (multiple shadow roots)', function() {
 
     var error = new Error(msg);
     document.addEventListener('click', f = function(e) {
+      error.ignore = true;
       throw error;
     });
 
